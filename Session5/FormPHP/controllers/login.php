@@ -16,7 +16,8 @@
 
     foreach($users as $user) {
         if($user["email"] === $email && $user["password"] === $password) {
-            $_SESSION["user"] = compact("email", "password");
+            $fullname = $user["fullname"];
+            $_SESSION["user"] = compact("email", "password", "fullname");
             header("Location: /");
             return;
         }

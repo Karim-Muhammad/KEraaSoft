@@ -46,7 +46,7 @@
             $errors["email"] = "Email is not valid";
         
         if(
-            !validate($password, fn($input) => preg_match("/[a-z]+[A-Z]+[0-9]+[!@#$%^&*()_]/", $input))
+            !validate($password, fn($input) => preg_match("/[a-zA-Z0-9!@#$%^&*()_]+/", $input))
         )
             $errors["password"] = "Password must contain at least one lowercase, uppercase, number and special character";
 

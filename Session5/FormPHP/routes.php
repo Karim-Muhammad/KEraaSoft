@@ -17,4 +17,8 @@
       "name" => "!Logout", // ! means this route is not linked in the navbar
       "controller" => "controllers/logout.php",
     ],
+    "/profile" => [
+      "name" => "!Profile",
+      "controller" => "controllers/profile.php",
+    ]
   ];

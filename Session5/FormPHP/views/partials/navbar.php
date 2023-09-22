@@ -24,6 +24,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/logout">Logout</a>
                     </li>
+                    <li>
+                        <a class="nav-link" href="/profile">profile</a>
+                    </li>
                 <?php endif; ?>
             </ul>
         </div>
