@@ -4,28 +4,10 @@ require_once 'Model.php';
 
 class Product extends Model
 {
-    public $title;
-    private $slug;
-    public $description;
-    public $price;
-    public $image;
-    public $category_id;
-
-    public function __construct($title, $description, $price, $image, $category_id)
-    {
-        $this->title = $title;
-        $this->slug = slugify($title);
-        $this->description = $description;
-        $this->price = $price;
-        $this->image = $image;
-
-        // Now i can add one category to product not many
-        $this->category_id = $category_id;
-    }
-
     // ============================= CRUD =======================
     public static function create($data_assoc)
     {
+        // Child inherit Static from parent
         if (!self::validate($data_assoc)) {
             return false;
         }

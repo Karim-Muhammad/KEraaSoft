@@ -59,10 +59,11 @@ class ProductController
                 throw new Exception(implode(', ', Product::$errors), 1);
             }
 
-            redirect("/admin/products/index");
+            redirect("/admin/products");
         } catch (Exception $e) {
 
             Session::flash('errors', ['auth-msg' => $e->getMessage()]);
+            // dd($data);
             redirect("/admin/products/create");
         }
 
