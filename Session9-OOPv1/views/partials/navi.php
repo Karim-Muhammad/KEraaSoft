@@ -22,6 +22,21 @@ $routes_links = render_nav(isset($_SESSION["user"]) ?? false);
                                 <?= $route_name ?>
                             </a>
                         <?php endforeach; ?>
+
+                        <?php if (Session::get('user')['admin'] ?? false): ?>
+                            <a href="/admin"
+                                class="<?= $heading === "/admin" ? "bg-gray-900 text-white" : "text-gray-300" ?> hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium"
+                                aria-current="page">
+                                Admin
+                            </a>
+                        <?php else: ?>
+                            <!-- Badge -->
+                            <a href="/cart"
+                                class="<?= $heading === "/cart" ? "bg-gray-900 text-white" : "text-gray-300" ?> hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium"
+                                aria-current="page">
+                                Cart
+                            </a>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>

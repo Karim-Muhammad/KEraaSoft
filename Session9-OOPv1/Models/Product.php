@@ -19,10 +19,10 @@ class Product extends Model
         return $database->insert("PRODUCTS", $data_assoc);
     }
 
-    public static function update($id, $column, $value)
+    public static function update($data_assoc, $id)
     {
         global $database;
-        return $database->update("PRODUCTS", $column, $value, $id);
+        return $database->update("PRODUCTS", $data_assoc, $id);
     }
 
     public static function delete($id)
@@ -37,6 +37,12 @@ class Product extends Model
     {
         global $database;
         return $database->select("PRODUCTS");
+    }
+
+    public static function allJoin()
+    {
+        global $database;
+        return $database->selectJoin("PRODUCTS.*,CATEGORIES.`name` as category_name", "PRODUCTS", "CATEGORIES", "PRODUCTS.category_id = CATEGORIES.id");
     }
 
     public static function find($id)

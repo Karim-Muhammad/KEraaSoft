@@ -159,7 +159,7 @@ module.exports = {
         xl: "36rem",
       },
       fontFamily: {
-        sans: ["Inter", ...defaultTheme.fontFamily.sans],
+        cairo: ["Cairo", "sans-serif"],
       },
     },
   },

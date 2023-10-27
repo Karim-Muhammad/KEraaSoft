@@ -11,7 +11,10 @@
     <title>Blank - Windmill Dashboard</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
         rel="stylesheet" />
-    <link rel="stylesheet" href="/css/tailwind.output.css" />
+
+    <!-- Alpine.js -->
+    <link rel=' stylesheet' href='/css/tailwind.output.css' />
+    <link rel="stylesheet" href="/css/alpine.output.css" />
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
     <script src="/js/init-alpine.js"></script>
 
@@ -20,8 +23,6 @@
         href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
         rel="stylesheet">
 
-    <!-- <link rel='stylesheet' href='/css/main.output.css' /> -->
-    <link rel='stylesheet' href='/css/tailwind.output.css' />
     <title>CMS</title>
 
     <style>
@@ -47,6 +48,7 @@
             border-radius: .625rem 0 0 .625rem;
         }
     </style>
+
 </head>
 
 <body>
@@ -67,7 +69,7 @@
                                     d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6">
                                 </path>
                             </svg>
-                            <span class="ml-4">Dashboard</span>
+                            <span class="ml-4">Home</span>
                         </a>
                     </li>
                 </ul>
@@ -238,7 +240,7 @@
                                 @click="toggleProfileMenu" @keydown.escape="closeProfileMenu" aria-label="Account"
                                 aria-haspopup="true">
                                 <img class="object-cover w-8 h-8 rounded-full"
-                                    src="https://images.unsplash.com/photo-1502378735452-bc7d86632805?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=aa3a807e1bbdfd4364d1f449eaa96d82"
+                                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
                                     alt="" aria-hidden="true" />
                             </button>
                             <template x-if="isProfileMenuOpen">

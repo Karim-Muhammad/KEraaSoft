@@ -2,7 +2,7 @@
 
 require_once base_path("Core/Session.php");
 
-class Users
+class User
 {
     public static function findByEmail($email)
     {
@@ -16,8 +16,6 @@ class Users
             throw new Exception($e->getMessage() . " Couldn't Find User!");
         }
 
-        // dd($result);
-        // dd($result);
         return $result ?? null;
     }
 

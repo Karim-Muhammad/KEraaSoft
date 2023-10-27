@@ -1,6 +1,6 @@
 <?php
 
-require_once base_path("Core/Category.php");
+require_once base_path("Models/Category.php");
 
 class CategoryController
 {
@@ -8,19 +8,22 @@ class CategoryController
     {
         $categories = Category::all();
 
-        view('admin/categories/index', compact('categories'));
+        view('admin/category/index', compact('categories'));
     }
 
     public function create()
     {
-        view('admin/categories/create');
+        view('admin/category/create');
     }
 
     public function store()
     {
-        $name = $_POST['name'];
+        $data = [
+            "name" => $_POST['name'],
+            'slug' => slugify($_POST['name'])
+        ];
 
-        Category::create($name);
+        Category::create($data);
 
         redirect('/admin/categories');
     }
@@ -29,9 +32,9 @@ class CategoryController
     {
         $id = $_GET['id'];
 
-        $category = Category::find($id);
-
-        view('admin/categories/show', compact('category'));
+        // InConsistency
+        $category = Category::find($id)[0];
+        view('admin/category/show', compact('category'));
     }
 
     /**
@@ -41,9 +44,9 @@ class CategoryController
     {
         $id = $_GET['id'];
 
-        $category = Category::find($id);
+        $category = Category::find($id)[0];
 
-        view('admin/categories/edit', compact('category'));
+        view('admin/category/edit', compact('category'));
     }
 
     /**
@@ -52,9 +55,13 @@ class CategoryController
     public function update()
     {
         $id = $_GET['id'];
-        $name = $_POST['name'];
+        $data = [
+            "name" => $_POST['name'],
+            'slug' => slugify($_POST['name']),
+        ];
 
-        Category::update($id, $name);
+        Category::update($data, $id);
+        // TODO something wrong here will need some fix (slug)
 
         redirect('/admin/categories');
     }
@@ -64,10 +71,13 @@ class CategoryController
      */
     public function destroy()
     {
-        $id = $_GET['id'];
+        $id = (int) $_POST['id'];
 
         Category::delete($id);
 
         redirect('/admin/categories');
     }
 }
+
+
+return new CategoryController;

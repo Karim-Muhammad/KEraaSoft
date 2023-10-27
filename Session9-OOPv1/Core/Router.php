@@ -95,6 +95,7 @@ class Router
         // echo "</pre>";
 
         $action = $route["action"];
+
         $controller->$action(); // syntax sugar for $controller->index();
     }
 }

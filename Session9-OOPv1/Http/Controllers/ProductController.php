@@ -7,10 +7,18 @@ class ProductController
 {
     public function index()
     {
-        $products = Product::all();
-        view("pages/products", [
+        $products = Product::allJoin();
+        view("pages/products/index", [
             'name' => "Products ALL",
             'products' => $products,
+        ]);
+    }
+
+    public function show()
+    {
+        $product = Product::find($_GET['id']);
+        view("pages/products/show", [
+            'product' => $product,
         ]);
     }
 
@@ -22,12 +30,12 @@ class ProductController
         ]);
     }
 
-    public function create()
+    public function AdminCreate()
     {
         view("admin/products/create");
     }
 
-    public function store()
+    public function AdminStore()
     {
         $data = $_POST;
 
@@ -37,13 +45,15 @@ class ProductController
 
         unset($data['_method']);
 
+        // dd($_FILES);
+
         // Upload File
         $target_dir = base_path("public/uploads/");
         $target_file = $target_dir . basename($_FILES["file_upload"]["name"]);
         // $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
         // Check if image file is a actual image or fake image
-        $data['image'] = $target_file;
+        $data['image'] = $_FILES["file_upload"]["name"];
 
         $check = getimagesize($_FILES["file_upload"]["tmp_name"]);
 
@@ -69,7 +79,7 @@ class ProductController
 
     }
 
-    public function show()
+    public function AdminShow()
     {
         $product = Product::find($_GET['id']);
         view("admin/products/show", [
@@ -77,33 +87,60 @@ class ProductController
         ]);
     }
 
-    public function edit()
+    public function AdminEdit()
     {
         $product = Product::find($_GET['id']);
+
         view("admin/products/edit", [
             'product' => $product,
         ]);
     }
 
-    public function update()
+    public function AdminUpdate()
     {
         // TODO: Update Product
-        // $product = Product::find($_GET['id']);
-        // $product->name = $_POST['name'];
-        // $product->price = $_POST['price'];
-        // $product->description = $_POST['description'];
-        // $product->save();
+        $data = $_POST;
 
-        redirect("admin/products/index");
+        // unlink
+        $target_dir = base_path('/public/uploads/');
+        $target_file = $target_dir . basename($_FILES['file_upload']['name']);
+
+        if (file_exists($target_file)) {
+            unlink($target_file);
+        }
+
+        $data['image'] = $_FILES['file_upload']['name'];
+        move_uploaded_file($_FILES['file_upload']['tmp_name'], $target_file);
+
+
+        unset($data['_method']);
+        unset($data['id']);
+
+        $data['price'] = (float) $data['price'];
+        $data['user_id'] = (int) $data['user_id'];
+        $data['category_id'] = (int) $data['category_id'];
+
+        // Upload File TODO
+        // dd($data);
+
+        // Update
+        Product::update($data, $_POST['id']);
+
+        redirect("/admin/products");
     }
 
-    public function destroy()
+    public function AdminDestroy()
     {
         // TODO: Delete Product
-        // $product = Product::find($_GET['id']);
-        // $product->delete();
+        // dd($_POST['id']);
 
-        redirect("admin/products/index");
+        $id = (int) $_POST['id'];
+
+
+        Product::delete($id);
+
+
+        redirect("/admin/products");
     }
 }
 

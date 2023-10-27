@@ -25,7 +25,7 @@ class AuthMiddleware
         $user = Session::get('user');
         // dd($user);
 
-        if ($url_role === 'admin' && $user['admin'] === 0) {
+        if ($url_role === 'admin' && (int) $user['admin'] === 0) {
             Session::flash("errors", ['auth-msg' => 'You are not authorized to access this page!']);
             redirect('/error');
             return false;

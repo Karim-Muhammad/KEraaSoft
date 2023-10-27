@@ -24,7 +24,7 @@ class AuthController
             redirect('/auth/login');
         }
 
-        $userModel = Users::findByEmail($user['email']);
+        $userModel = User::findByEmail($user['email']);
 
         // dd($userModel);
 

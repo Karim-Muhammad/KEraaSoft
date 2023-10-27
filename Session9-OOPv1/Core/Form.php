@@ -6,7 +6,7 @@ require_once base_path('Core/Validator.php');
 
 // Models
 require_once base_path("Models/Cart.php");
-require_once base_path("Models/Users.php");
+require_once base_path("Models/User.php");
 
 // Session
 require_once base_path("Core/Session.php");
@@ -67,7 +67,7 @@ class Form
             'password' => $this->formData['password'],
         ];
 
-        Users::create($data['admin'], $data['username'], $data['email'], password_hash($data['password'], PASSWORD_DEFAULT));
+        User::create($data['admin'], $data['username'], $data['email'], password_hash($data['password'], PASSWORD_DEFAULT));
         return true;
     }
 
@@ -77,7 +77,7 @@ class Form
             "email" => $this->formData["email"],
         ];
 
-        $user = Users::findByEmail($data["email"]);
+        $user = User::findByEmail($data["email"]);
 
         if ($user === null) {
             // TODO : Redirect with errors

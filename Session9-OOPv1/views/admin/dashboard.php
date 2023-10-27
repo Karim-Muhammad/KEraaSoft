@@ -1,5 +1,7 @@
 <?php require_once base_path("views/admin/partials/head.php") ?>
 
+<?php #dd(Session::get('user')) ?>
+
 <main class="h-full pb-16 overflow-y-auto">
     <!-- Remove everything INSIDE this div to a really blank page -->
     <div class="container px-6 mx-auto grid">

@@ -38,21 +38,22 @@ $sql = <<<SQL
         `image` VARCHAR(150) NOT NULL,
         `category_id` INT(6) UNSIGNED NOT NULL,
         `user_id` INT(6) UNSIGNED NULL,
+        FOREIGN KEY (category_id) REFERENCES CATEGORIES(id) ON DELETE CASCADE,
         FOREIGN KEY (user_id) REFERENCES USERS(id)
     );
 SQL;
 $database->migrations($sql)->migrate();
 
-$sql = <<<SQL
-    CREATE TABLE IF NOT EXISTS CATEGORIES_PRODUCTS (
-        `category_id` INT(6) UNSIGNED NOT NULL,
-        `product_id` INT(6) UNSIGNED NOT NULL,
-        FOREIGN KEY (category_id) REFERENCES CATEGORIES(id),
-        FOREIGN KEY (product_id) REFERENCES PRODUCTS(id),
-        index (category_id, product_id)
-    );
-SQL;
-$database->migrations($sql)->migrate();
+// $sql = <<<SQL
+//     CREATE TABLE IF NOT EXISTS CATEGORIES_PRODUCTS (
+//         `category_id` INT(6) UNSIGNED NOT NULL,
+//         `product_id` INT(6) UNSIGNED NOT NULL,
+//         FOREIGN KEY (category_id) REFERENCES CATEGORIES(id),
+//         FOREIGN KEY (product_id) REFERENCES PRODUCTS(id),
+//         index (category_id, product_id)
+//     );
+// SQL;
+// $database->migrations($sql)->migrate();
 
 $sql = <<<SQL
     CREATE TABLE IF NOT EXISTS CARTS (

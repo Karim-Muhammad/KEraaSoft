@@ -7,9 +7,9 @@ $config = require_once base_path('config.php');
 
 class Database
 {
-    private static $mysql = null;
-    private static $config = null;
-    private static $db = null;
+    private static ?mysqli $mysql = null;
+    private static ?array $config = null;
+    private static ?Database $db = null; // to make sure that we have only one instance of the database (singleton pattern   )
 
     private $migrations_sql = null;
     private $stmt = null;
@@ -69,9 +69,25 @@ class Database
         return $this->stmt;
     }
 
-    public function update(string $table, string $column, $value, $id): bool
+    public function update(string $table, array $data_assoc, $id): bool
     {
-        $this->stmt = self::$mysql->query("UPDATE $table SET $column = $value WHERE id = $id");
+        $stmts = "";
+        for ($i = 0; $i < count($data_assoc); $i++) {
+            $key = array_keys($data_assoc)[$i];
+            $value = array_values($data_assoc)[$i];
+
+            if (is_string($value))
+                $value = "'$value'";
+
+
+            if ($i != count($data_assoc) - 1)
+                $stmts .= "`$key` = $value, ";
+            else
+                $stmts .= "`$key` = $value";
+
+        }
+        // dd("UPDATE $table SET {$stmts} WHERE id = $id");
+        $this->stmt = self::$mysql->query("UPDATE $table SET {$stmts} WHERE id = $id");
         return $this->stmt;
     }
 
@@ -100,16 +116,29 @@ class Database
         return $this;
     }
 
-    public function run(string $types, &...$params): void
+    public function run(string $types, &...$params): mysqli_stmt
     {
         $this->stmt->bind_param($types, ...$params);
         $this->stmt->execute();
+        return $this->stmt;
     }
 
     public function fetch($fetch_callback)
     {
         $result = $this->stmt->get_result();
         return $fetch_callback($result);
+    }
+
+    // JOIN
+
+    /**
+     * Inner Join
+     */
+    public function selectJoin($projection, $table1, $table2, $on, $where = true): array
+    {
+        // dd("SELECT {$projection} FROM {$table1} INNER JOIN {$table2} {$on}");
+        $this->stmt = self::$mysql->query("SELECT {$projection} FROM {$table1} INNER JOIN {$table2} ON {$on} WHERE {$where}");
+        return $this->stmt->fetch_all(MYSQLI_ASSOC);
     }
 
     /* ============================= Destruct ======================= */

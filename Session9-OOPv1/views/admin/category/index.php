@@ -1,15 +1,10 @@
 <?php require_once base_path("views/admin/partials/head.php") ?>
 
-<?php
-// dd($products);
-?>
-
-
 <!-- component -->
 <main class="max-h-full">
     <!-- Create Button -->
     <div class="flex justify-end">
-        <a href="/admin/products/create"
+        <a href="/admin/categories/create"
             class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded my-3 mx-3">
             Create
         </a>
@@ -37,15 +32,15 @@
                                 </td>
 
                                 <td class="p-3">
-                                    <a href="/admin/category/show" class="text-gray-400 hover:text-gray-100 mr-2">
+                                    <a href="/admin/category?id=<?= $category['id'] ?>"
+                                        class="text-gray-400 hover:text-gray-100 mr-2">
                                         <i class="material-icons-outlined text-base">visibility</i>
                                     </a>
-                                    <a href="/admin/category/edit" class="text-gray-400 hover:text-gray-100 mx-2">
+                                    <a href="/admin/category/edit?id=<?= $category['id'] ?>"
+                                        class="text-gray-400 hover:text-gray-100 mx-2">
                                         <i class="material-icons-outlined text-base">edit</i>
                                     </a>
-                                    <a href="/admin/category/delete" class="text-gray-400 hover:text-gray-100 ml-2">
-                                        <i class="material-icons-round text-base">delete_outline</i>
-                                    </a>
+                                    <?php require base_path("views/admin/category/delete.php") ?>
                                 </td>
                             </tr>
                         <?php endforeach ?>
@@ -55,5 +50,6 @@
         </div>
     </div>
 </main>
+
 
 <?php require_once base_path("views/admin/partials/foot.php") ?>

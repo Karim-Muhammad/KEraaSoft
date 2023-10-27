@@ -33,7 +33,7 @@
                         <?php foreach ($products as $product): ?>
                             <tr>
                                 <td class='p-3'>
-                                    <img src=" <?= $product['image'] ?>" />
+                                    <img src="/uploads/<?= $product['image'] ?>" class='w-16' />
                                 </td>
 
                                 <td class='p-3'>
@@ -57,15 +57,15 @@
                                 </td>
 
                                 <td class="p-3">
-                                    <a href="/admin/products/show" class="text-gray-400 hover:text-gray-100 mr-2">
+                                    <a href="/admin/product?id=<?= $product['id'] ?>"
+                                        class="text-gray-400 hover:text-gray-100 mr-2">
                                         <i class="material-icons-outlined text-base">visibility</i>
                                     </a>
-                                    <a href="/admin/products/edit" class="text-gray-400 hover:text-gray-100 mx-2">
+                                    <a href="/admin/product/edit?id=<?= $product['id'] ?>"
+                                        class="text-gray-400 hover:text-gray-100 mx-2">
                                         <i class="material-icons-outlined text-base">edit</i>
                                     </a>
-                                    <a href="/admin/products/delete" class="text-gray-400 hover:text-gray-100 ml-2">
-                                        <i class="material-icons-round text-base">delete_outline</i>
-                                    </a>
+                                    <?php require base_path("views/admin/products/delete.php") ?>
                                 </td>
                             </tr>
                         <?php endforeach ?>

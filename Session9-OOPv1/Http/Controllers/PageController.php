@@ -1,13 +1,18 @@
 <?php
 
 require_once base_path('Core/Session.php');
+require_once base_path('Models/Product.php');
 
 class PageController
 {
     public function home()
     {
-        view("index", [
+        $products = Product::allJoin();
+
+        // dd($products);
+        view("pages/products/index", [
             'name' => "Home",
+            'products' => $products
         ]);
     }
 
