@@ -2,9 +2,9 @@ Simple Clinical CRUD (Doctors, Patients, Admin) with PHP, OOP, MYSQL and MVC Pat
 
 ## Installation
 
-1. Import database `simple_cms_v1.sql`
+1. Import database `simple_v_care.sql`
 2. Clone this repository
-3. `cd simple-cms`
+3. `cd simple-v-care`
 4. `php -S localhost:<port> -t public/` (`-t` is important)
 
 ## Usage
@@ -34,5 +34,6 @@ of course you can register your own account.
 - [x] Bookings
   - [x] List Orders
   - [] Update Orders
+- [] Contact - simple contact form
 - [] pagination
 - [] filter dropdown
