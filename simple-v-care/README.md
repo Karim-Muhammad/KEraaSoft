@@ -1,4 +1,4 @@
-Simple PMS CRUD (Categories, Products) and Profile user, with PHP, OOP, MYSQL
+Simple Clinical CRUD (Doctors, Patients, Admin) with PHP, OOP, MYSQL and MVC Pattern
 
 ## Installation
 
