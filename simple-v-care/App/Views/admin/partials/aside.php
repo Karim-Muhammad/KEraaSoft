@@ -44,7 +44,7 @@
 
     <!-- Nav Item - Logout -->
     <li class="nav-item">
-        <a class="nav-link" href="/logout">
+        <a class="nav-link" href="/auth/logout">
             <i class="fas fa-sign-out"></i>
             <span>Logout</span></a>
     </li>

@@ -11,8 +11,8 @@ Simple Clinical CRUD (Doctors, Patients, Admin) with PHP, OOP, MYSQL and MVC Pat
 
 if you want to login as admin, you can use this account:
 
-- email: admin@gmail.com
-- password: admin
+- email: karim_muhammad@gmail.com
+- password: karim
 
 of course you can register your own account.
 
